@@ -2,7 +2,7 @@
 
 namespace TafDecoder\Entity;
 
-class DecodedTaf
+class DecodedTaf implements \JsonSerializable
 {
     // raw TAF
     private $raw_taf;
@@ -50,6 +50,13 @@ class DecodedTaf
         $this->decoding_exceptions = array();
         $this->clouds = array();
         $this->weather_phenomenons = array();
+    }
+
+    public function jsonSerialize()
+    {
+        $vars = get_object_vars($this);
+
+        return $vars;
     }
 
     /**

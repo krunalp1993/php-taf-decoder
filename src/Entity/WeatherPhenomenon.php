@@ -2,7 +2,7 @@
 
 namespace TafDecoder\Entity;
 
-class WeatherPhenomenon
+class WeatherPhenomenon implements \JsonSerializable
 {
     // intensity/proximity of the phenomenon + / - / VC (heavy, light, vicinity)
     private $intensity_proximity;
@@ -21,6 +21,13 @@ class WeatherPhenomenon
     {
         $this->phenomena = array();
         $this->evolutions = array();
+    }
+
+    public function jsonSerialize()
+    {
+        $vars = get_object_vars($this);
+
+        return $vars;
     }
 
 

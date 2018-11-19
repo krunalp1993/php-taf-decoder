@@ -2,7 +2,7 @@
 
 namespace TafDecoder\Entity;
 
-class Evolution
+class Evolution implements \JsonSerializable
 {
     // annotation corresponding to the type of evolution (FM, BECMG or TEMPO)
     private $type;
@@ -34,6 +34,12 @@ class Evolution
     public function __construct()
     {
         $this->evolutions = array();
+    }
+
+    public function jsonSerialize()
+    {
+        $vars = get_object_vars($this);
+        return $vars;
     }
 
 
@@ -135,8 +141,8 @@ class Evolution
 
     public function addEvolution($evolution)
     {
+        // $this->evolutions[] = $evolution->jsonSerialize();
         $this->evolutions[] = $evolution;
-
         return $this;
     }
 

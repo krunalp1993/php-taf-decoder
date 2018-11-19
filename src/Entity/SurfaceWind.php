@@ -2,7 +2,7 @@
 
 namespace TafDecoder\Entity;
 
-class SurfaceWind
+class SurfaceWind implements \JsonSerializable
 {
     // wind direction
     private $mean_direction;
@@ -26,6 +26,13 @@ class SurfaceWind
     public function __construct()
     {
         $this->evolutions = array();
+    }
+
+    public function jsonSerialize()
+    {
+        $vars = get_object_vars($this);
+
+        return $vars;
     }
 
 

@@ -2,7 +2,7 @@
 
 namespace TafDecoder\Entity;
 
-class CloudLayer
+class CloudLayer implements \JsonSerializable
 {
     // annotation corresponding to amount of clouds (FEW/SCT/BKN/OVC)
     private $amount;
@@ -23,6 +23,13 @@ class CloudLayer
         $this->base_height = null;
         $this->type = null;
         $this->evolutions = array();
+    }
+
+    public function jsonSerialize()
+    {
+        $vars = get_object_vars($this);
+
+        return $vars;
     }
 
 

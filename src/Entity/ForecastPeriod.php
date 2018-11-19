@@ -2,7 +2,7 @@
 
 namespace TafDecoder\Entity;
 
-class ForecastPeriod
+class ForecastPeriod implements \JsonSerializable
 {
     // starting day of forecast period
     private $from_day;
@@ -16,7 +16,12 @@ class ForecastPeriod
     // ending hour of forecast period
     private $to_hour;
 
+    public function jsonSerialize()
+    {
+        $vars = get_object_vars($this);
 
+        return $vars;
+    }
     /**
      * Check if the forecast period is valid
      */

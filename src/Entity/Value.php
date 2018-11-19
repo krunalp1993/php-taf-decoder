@@ -2,7 +2,7 @@
 
 namespace TafDecoder\Entity;
 
-class Value
+class Value implements \JsonSerializable
 {
     private $value;
 
@@ -45,6 +45,13 @@ class Value
         $this->value = $value;
 
         $this->unit = $unit;
+    }
+
+    public function jsonSerialize()
+    {
+        $vars = get_object_vars($this);
+
+        return $vars;
     }
 
     public function getValue()

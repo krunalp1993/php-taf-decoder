@@ -2,7 +2,7 @@
 
 namespace TafDecoder\Entity;
 
-class Temperature
+class Temperature implements \JsonSerializable
 {
     // annotation defining whether it's the minimum or maximum forecast temperature
     private $type;
@@ -23,6 +23,13 @@ class Temperature
     public function __construct()
     {
         $this->evolutions = array();
+    }
+
+    public function jsonSerialize()
+    {
+        $vars = get_object_vars($this);
+
+        return $vars;
     }
 
 

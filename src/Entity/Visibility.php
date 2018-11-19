@@ -2,7 +2,7 @@
 
 namespace TafDecoder\Entity;
 
-class Visibility
+class Visibility implements \JsonSerializable
 {
     // prevailing visibility
     private $visibility;
@@ -18,6 +18,13 @@ class Visibility
     {
         $this->greater = false;
         $this->evolutions = array();
+    }
+
+    public function jsonSerialize()
+    {
+        $vars = get_object_vars($this);
+
+        return $vars;
     }
 
 

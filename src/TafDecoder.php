@@ -15,7 +15,7 @@ use TafDecoder\ChunkDecoder\CloudChunkDecoder;
 use TafDecoder\ChunkDecoder\TemperatureChunkDecoder;
 use TafDecoder\ChunkDecoder\EvolutionChunkDecoder;
 
-class TafDecoder
+class TafDecoder implements \JsonSerializable
 {
     private $decoder_chain;
 
@@ -44,6 +44,13 @@ class TafDecoder
     public function setStrictParsing($is_strict)
     {
         $this->global_strict_parsing = $is_strict;
+    }
+
+    public function jsonSerialize()
+    {
+        $vars = get_object_vars($this);
+
+        return $vars;
     }
 
     /**
